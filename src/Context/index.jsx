@@ -1,10 +1,19 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 const ShoppingCartContext = createContext();
 
 const ShoppingCartProvider = ({ children }) => {
-  return;
-  <ShoppingCartContext.Provider>{children};</ShoppingCartContext.Provider>;
+  const [count, setCount] = useState(0);
+
+  return (
+    <ShoppingCartContext.Provider
+      value={{
+        count,
+        setCount,
+      }}>
+      {children}
+    </ShoppingCartContext.Provider>
+  );
 };
 
-export { ShoppingCartProvider };
+export { ShoppingCartProvider, ShoppingCartContext };
