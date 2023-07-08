@@ -2,14 +2,21 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
-const Card = ({ category, image, title, price }) => {
-  const { count, setCount, openProductDetail } =
+const Card = ({ id, title, price, category, description, image }) => {
+  const { count, setCount, openProductDetail, setProductToShow } =
     useContext(ShoppingCartContext);
+
+  const showProduct = ({ id, title, price, category, description, image }) => {
+    openProductDetail();
+    setProductToShow({ id, title, price, category, description, image });
+  };
 
   return (
     <div
       className="bg-white cursor-pointer w-56 h-60 rounded-lg"
-      onClick={() => openProductDetail()}>
+      onClick={() =>
+        showProduct({ id, title, price, category, description, image })
+      }>
       <figure className="relative mb-2 w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5">
           {category}
