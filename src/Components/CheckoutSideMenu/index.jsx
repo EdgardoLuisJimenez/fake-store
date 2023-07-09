@@ -1,7 +1,6 @@
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context";
-import './styles.css'
 
 const CheckoutSideMenu = () => {
   const { isCheckSideMenuOpen, closeCheckSideMenuOpen } =
