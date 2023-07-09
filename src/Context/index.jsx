@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const ShoppingCartContext = createContext();
 
@@ -14,6 +14,13 @@ const ShoppingCartProvider = ({ children }) => {
   // Product Detail - Show Product
   const [productToShow, setProductToShow] = useState({});
 
+  // Shopping Cart - Add products to cart
+  const [cartProducts, setCartProducts] = useState([]);
+
+  useEffect(() => {
+    console.log(`Se han actualizado los productos: ${cartProducts.title}`);
+  }, [cartProducts]);
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -22,8 +29,10 @@ const ShoppingCartProvider = ({ children }) => {
         openProductDetail,
         closeProductDetail,
         isProductDetailOpen,
-        productToShow, 
-        setProductToShow
+        productToShow,
+        setProductToShow,
+        cartProducts,
+        setCartProducts,
       }}>
       {children}
     </ShoppingCartContext.Provider>
