@@ -17,9 +17,6 @@ const ShoppingCartProvider = ({ children }) => {
   // Shopping Cart - Add products to cart
   const [cartProducts, setCartProducts] = useState([]);
 
-  useEffect(() => {
-    console.log(`Se han actualizado los productos: ${cartProducts.title}`);
-  }, [cartProducts]);
 
   return (
     <ShoppingCartContext.Provider

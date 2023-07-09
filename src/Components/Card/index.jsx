@@ -19,9 +19,8 @@ const Card = ({ id, title, price, category, description, image }) => {
   };
 
   const addProductsToCart = (productData) => {
-    console.log(`Cart: ${productData.title}`);
     setCount(count + 1);
-    setCartProducts([...cartProducts, productData]);
+    setCartProducts((cartProducts) => ([...cartProducts, productData]));
   };
 
   return (
@@ -34,8 +33,8 @@ const Card = ({ id, title, price, category, description, image }) => {
         </span>
         <img
           className="w-full h-full object-cover rounded-lg"
-          src={image}
-          alt={title}
+          src={productData.image}
+          alt={productData.title}
         />
         <div
           className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
