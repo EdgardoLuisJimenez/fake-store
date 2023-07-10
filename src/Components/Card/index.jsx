@@ -32,7 +32,7 @@ const Card = ({ id, title, price, category, description, image }) => {
 
   const renderIcon = (id) => {
     const isInCart =
-      cartProducts.filter((product) => product.id === id).length > 0;
+      cartProducts.some((product) => product.id === id);
 
     if (isInCart) {
       return (
