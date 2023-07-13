@@ -4,7 +4,7 @@ const OrdersCards = (props) => {
   const { totalPrice, totalProducts } = props;
 
   return (
-    <div className="flex justify-between items-center mb-3 border border-black w-80 p-4 rounded-lg ">
+    <div className="flex justify-between items-center mb-3 border border-none w-80 p-4 rounded-lg shadow-lg shadow-gray-400">
       <div className="flex justify-between w-full">
         <p className="flex flex-col">
           <span className="font-light">01.02.03</span>

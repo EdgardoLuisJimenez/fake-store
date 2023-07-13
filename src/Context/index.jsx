@@ -25,6 +25,19 @@ const ShoppingCartProvider = ({ children }) => {
   // Shopping Cart - Order
   const [order, setOrder] = useState([]);
 
+  // Get products
+  const [items, setItems] = useState(null);
+
+  // Get products by title
+  const [searchByTitle, setsearchByTitle] = useState();
+  console.log(`searchByTitle: ${searchByTitle}`);
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((response) => response.json())
+      .then((data) => setItems(data));
+  }, []);
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -42,6 +55,10 @@ const ShoppingCartProvider = ({ children }) => {
         closeCheckSideMenuOpen,
         order,
         setOrder,
+        items,
+        setItems,
+        searchByTitle,
+        setsearchByTitle,
       }}>
       {children}
     </ShoppingCartContext.Provider>
