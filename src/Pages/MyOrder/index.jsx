@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 function MyOrder() {
   const { order } = useContext(ShoppingCartContext);
+
   const currentPath = window.location.pathname;
   let index = currentPath.substring(currentPath.lastIndexOf("/") + 1);
   if (index === "last") index = order?.length - 1;
