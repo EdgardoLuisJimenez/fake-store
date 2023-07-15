@@ -5,7 +5,18 @@ import { ProductDetail } from "../../Components/ProductDetail";
 import { ShoppingCartContext } from "../../Context";
 
 function Home() {
-  const { items, setsearchByTitle } = useContext(ShoppingCartContext);
+  const { items, setsearchByTitle, searchByTitle, filteredItems } =
+    useContext(ShoppingCartContext);
+
+  const renderView = () => {
+    const itemsToRender = searchByTitle?.length > 0 ? filteredItems : items;
+
+    if (itemsToRender?.length > 0) {
+      return itemsToRender.map((item) => <Card key={item.id} {...item} />);
+    } else {
+      return <p>No Results Found</p>;
+    }
+  };
 
   return (
     <Layout>
@@ -19,9 +30,7 @@ function Home() {
         placeholder="Search a product"
       />
       <div className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
-        {items?.map((item) => (
-          <Card key={item.id} {...item} />
-        ))}
+        {renderView()}
       </div>
       <ProductDetail />
     </Layout>
