@@ -5,7 +5,7 @@ import { ShoppingCartContext } from "../../Context";
 
 const NavBar = () => {
   const activeStyle = "underline underline-offset-4";
-  const { count, setCount, setSearchByCategory,cartProducts } =
+  const { count, setCount, setSearchByCategory, cartProducts } =
     useContext(ShoppingCartContext);
 
   return (
@@ -24,43 +24,35 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink
-            to="/clothes"
-            onClick={() => setSearchByCategory("men's clothing")}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}>
-            Clothes
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
             to="/electronics"
             onClick={() => setSearchByCategory("electronics")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}>
             Electronics
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/jewelery"
+            onClick={() => setSearchByCategory("jewelery")}
+            className={({ isActive }) => (isActive ? activeStyle : undefined)}>
+            Jewelery
+          </NavLink>
+        </li>
 
         <li>
           <NavLink
-            to="/furnitures"
-            onClick={() => setSearchByCategory("furnitures")}
+            to="/men's clothing"
+            onClick={() => setSearchByCategory("men's clothing")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}>
-            Furnitures
+            Men's Clothing
           </NavLink>
         </li>
         <li>
           <NavLink
-            to="/toys"
-            onClick={() => setSearchByCategory("toys")}
+            to="/women's clothing"
+            onClick={() => setSearchByCategory("women's clothing")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}>
-            Toys
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/others"
-            onClick={() => setSearchByCategory("others")}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}>
-            Others
+            Women's Clothing
           </NavLink>
         </li>
       </ul>

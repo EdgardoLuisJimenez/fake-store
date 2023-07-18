@@ -17,7 +17,7 @@ const AppRoutes = () => {
       element: <Home />,
     },
     {
-      path: "/clothes",
+      path: "/jewelery",
       element: <Home />,
     },
     {
@@ -25,15 +25,11 @@ const AppRoutes = () => {
       element: <Home />,
     },
     {
-      path: "/furnitures",
+      path: "/men's clothing",
       element: <Home />,
     },
     {
-      path: "/toys",
-      element: <Home />,
-    },
-    {
-      path: "/others",
+      path: "/women's clothing",
       element: <Home />,
     },
     {

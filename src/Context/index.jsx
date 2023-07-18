@@ -94,7 +94,7 @@ const ShoppingCartProvider = ({ children }) => {
     if (!searchByTitle && !searchByCategory)
       setfilteredItems(filterBy(null, items, searchByTitle, searchByCategory));
 
-  }, [items, searchByTitle, searchByCategory]);
+  }, [searchByTitle, searchByCategory]);
 
   return (
     <ShoppingCartContext.Provider
