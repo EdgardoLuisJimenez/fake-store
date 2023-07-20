@@ -5,7 +5,7 @@ import { ProductDetail } from "../../Components/ProductDetail";
 import { ShoppingCartContext } from "../../Context";
 
 function Home() {
-  const { items, setsearchByTitle, searchByTitle, filteredItems } =
+  const { items, setsearchByTitle, filteredItems } =
     useContext(ShoppingCartContext);
 
   const renderView = () => {

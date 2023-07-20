@@ -5,7 +5,7 @@ import { ShoppingCartContext } from "../../Context";
 
 const NavBar = () => {
   const activeStyle = "underline underline-offset-4";
-  const { count, setCount, setSearchByCategory, cartProducts } =
+  const {setSearchByCategory, cartProducts } =
     useContext(ShoppingCartContext);
 
   return (
@@ -24,7 +24,7 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink
-            to="/electronics"
+            to="/category/electronics"
             onClick={() => setSearchByCategory("electronics")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}>
             Electronics
@@ -32,7 +32,7 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink
-            to="/jewelery"
+            to="/category/jewelery"
             onClick={() => setSearchByCategory("jewelery")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}>
             Jewelery
@@ -41,7 +41,7 @@ const NavBar = () => {
 
         <li>
           <NavLink
-            to="/men's clothing"
+            to="/category/men's clothing"
             onClick={() => setSearchByCategory("men's clothing")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}>
             Men's Clothing
@@ -49,7 +49,7 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink
-            to="/women's clothing"
+            to="/category/women's clothing"
             onClick={() => setSearchByCategory("women's clothing")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}>
             Women's Clothing
