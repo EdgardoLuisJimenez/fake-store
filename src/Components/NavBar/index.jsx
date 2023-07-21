@@ -1,20 +1,39 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { ShoppingBagIcon } from "@heroicons/react/24/solid";
+import { ShoppingBagIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../Context";
 
 const NavBar = () => {
   const activeStyle = "underline underline-offset-4";
-  const {setSearchByCategory, cartProducts } =
-    useContext(ShoppingCartContext);
+  const {
+    setSearchByCategory,
+    cartProducts,
+    isClickable,
+    showCategories,
+    setShowCategories,
+  } = useContext(ShoppingCartContext);
 
   return (
-    <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0">
-      <ul className="flex items-center gap-3">
-        <li className="font-semibold text-lg">
-          <NavLink to="/">Shopi</NavLink>
+    <nav className="relative">
+      <ul className="flex justify-center items-center fixed z-10 w-full py-5 px-8 font-light top-0">
+        <li className="font-semibold text-3xl">
+          <NavLink
+            to="/"
+            onClick={() => setShowCategories((option) => !option)}>
+            Shopi
+          </NavLink>
         </li>
-        <li>
+      </ul>
+      <ul
+        className={`${
+          showCategories
+            ? "flex flex-col h-full justify-evenly items-center bg-white gap-y-9 w-full fixed z-10 top-0"
+            : "hidden"
+        }`}>
+        <li className="absolute top-0 right-0 flex justify-center items-center w-6 h-10 rounded-full m-2 p-1">
+          <XMarkIcon className="h-full w-full text-black" />
+        </li>
+        <li className="mt-12">
           <NavLink
             to="/"
             onClick={() => setSearchByCategory()}
@@ -55,9 +74,6 @@ const NavBar = () => {
             Women's Clothing
           </NavLink>
         </li>
-      </ul>
-
-      <ul className="flex items-center gap-3">
         <li className="text-black/60">edgardotecno@gmail.com</li>
         <li>
           <NavLink

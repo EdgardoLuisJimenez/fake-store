@@ -37,6 +37,22 @@ const ShoppingCartProvider = ({ children }) => {
   // Get products by category
   const [searchByCategory, setSearchByCategory] = useState(null);
 
+  // Click the Shopi
+  const [isClickable, setIsClickable] = useState(false);
+
+  const [showCategories, setShowCategories] = useState(false);
+
+  const handleResize = () => {
+    setIsClickable(window.innerWidth <= 576);
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((response) => response.json())
@@ -93,7 +109,6 @@ const ShoppingCartProvider = ({ children }) => {
 
     if (!searchByTitle && !searchByCategory)
       setfilteredItems(filterBy(null, items, searchByTitle, searchByCategory));
-
   }, [searchByTitle, searchByCategory]);
 
   return (
@@ -121,6 +136,9 @@ const ShoppingCartProvider = ({ children }) => {
         setfilteredItems,
         searchByCategory,
         setSearchByCategory,
+        isClickable,
+        showCategories,
+        setShowCategories,
       }}>
       {children}
     </ShoppingCartContext.Provider>

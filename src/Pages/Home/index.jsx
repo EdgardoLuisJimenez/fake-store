@@ -29,7 +29,7 @@ function Home() {
         type="text"
         placeholder="Search a product"
       />
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4 w-full max-w-screen-lg m-auto justify-items-center">
+      <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 w-full max-w-screen-lg m-auto justify-items-center">
         {renderView()}
       </div>
       <ProductDetail />
