@@ -18,6 +18,7 @@ const NavBar = () => {
       setShowCategories((option) => !option);
     }
   };
+  console.log(showCategories);
 
   return (
     <nav
@@ -40,7 +41,7 @@ const NavBar = () => {
         className={`${
           showCategories
             ? "flex flex-col h-full justify-evenly items-center bg-white gap-y-9 w-full fixed z-10 top-0"
-            : "flex items-center gap-5"
+            : "hidden sm:flex sm:items-center sm:gap-5"
         }`}>
         <li
           className={`${
@@ -55,7 +56,7 @@ const NavBar = () => {
           <NavLink
             to="/"
             onClick={() => setSearchByCategory()}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}>
+            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}>
             All
           </NavLink>
         </li>
@@ -63,7 +64,7 @@ const NavBar = () => {
           <NavLink
             to="/category/electronics"
             onClick={() => setSearchByCategory("electronics")}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}>
+            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}>
             Electronics
           </NavLink>
         </li>
@@ -71,7 +72,7 @@ const NavBar = () => {
           <NavLink
             to="/category/jewelery"
             onClick={() => setSearchByCategory("jewelery")}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}>
+            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}>
             Jewelery
           </NavLink>
         </li>
@@ -80,7 +81,7 @@ const NavBar = () => {
           <NavLink
             to="/category/men's clothing"
             onClick={() => setSearchByCategory("men's clothing")}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}>
+            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}>
             Men's Clothing
           </NavLink>
         </li>
@@ -88,29 +89,29 @@ const NavBar = () => {
           <NavLink
             to="/category/women's clothing"
             onClick={() => setSearchByCategory("women's clothing")}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}>
+            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}>
             Women's Clothing
           </NavLink>
         </li>
-        <li className="text-black/60 ml-10">edgardotecno@gmail.com</li>
+        <li className="text-black/60 ml-10 text-sm">edgardotecno@gmail.com</li>
         <li>
           <NavLink
             to="/my-orders"
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}>
+            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}>
             My Orders
           </NavLink>
         </li>
         <li>
           <NavLink
             to="/my-account"
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}>
+            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}>
             My Account
           </NavLink>
         </li>
         <li>
           <NavLink
             to="/sign-in"
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}>
+            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}>
             Sign In
           </NavLink>
         </li>
