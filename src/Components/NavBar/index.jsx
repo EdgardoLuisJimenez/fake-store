@@ -13,13 +13,25 @@ const NavBar = () => {
     setShowCategories,
   } = useContext(ShoppingCartContext);
 
+  const handleClick = () => {
+    if (isClickable) {
+      setShowCategories((option) => !option);
+    }
+  };
+
   return (
-    <nav className="relative">
-      <ul className="flex justify-center items-center fixed z-10 w-full py-5 px-8 font-light top-0">
+    <nav
+      className={`${
+        isClickable ? "relative" : "relative flex items-center w-full gap-8 pt-3 pl-5"
+      }`}>
+      <ul
+        className={`${
+          isClickable
+            ? "flex justify-center items-center fixed z-10 w-full py-5 px-8 font-light top-0"
+            : "flex"
+        }`}>
         <li className="font-semibold text-3xl">
-          <NavLink
-            to="/"
-            onClick={() => setShowCategories((option) => !option)}>
+          <NavLink to="/" onClick={handleClick}>
             Shopi
           </NavLink>
         </li>
@@ -28,12 +40,18 @@ const NavBar = () => {
         className={`${
           showCategories
             ? "flex flex-col h-full justify-evenly items-center bg-white gap-y-9 w-full fixed z-10 top-0"
-            : "hidden"
+            : "flex items-center gap-5"
         }`}>
-        <li className="absolute top-0 right-0 flex justify-center items-center w-6 h-10 rounded-full m-2 p-1">
+        <li
+          className={`${
+            showCategories
+              ? "absolute top-0 right-0 flex justify-center items-center w-6 h-10 rounded-full m-2 p-1"
+              : "hidden"
+          }`}
+          onClick={() => setShowCategories((option) => !option)}>
           <XMarkIcon className="h-full w-full text-black" />
         </li>
-        <li className="mt-12">
+        <li className="">
           <NavLink
             to="/"
             onClick={() => setSearchByCategory()}
@@ -74,7 +92,7 @@ const NavBar = () => {
             Women's Clothing
           </NavLink>
         </li>
-        <li className="text-black/60">edgardotecno@gmail.com</li>
+        <li className="text-black/60 ml-10">edgardotecno@gmail.com</li>
         <li>
           <NavLink
             to="/my-orders"
