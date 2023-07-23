@@ -11,8 +11,14 @@ const NavBar = () => {
     isClickable,
     showCategories,
     setShowCategories,
+    signOut,
     setSignOut,
   } = useContext(ShoppingCartContext);
+
+  // Sign Out
+  const signOutLocalStorage = localStorage.getItem("sign-out");
+  const parseSignOut = JSON.parse(signOutLocalStorage);
+  const isUserSignOut = signOut || parseSignOut;
 
   const handleClick = () => {
     if (isClickable) {
@@ -24,6 +30,47 @@ const NavBar = () => {
     const stringifiedSignOut = JSON.stringify(true);
     localStorage.setItem("sign-out", stringifiedSignOut);
     setSignOut(true);
+  };
+
+  const renderView = () => {
+    if (isUserSignOut) {
+      return (
+        <li>
+          <NavLink
+            to="/sign-in"
+            className={({ isActive }) => (isActive ? activeStyle : undefined)}
+            onClick={() => handleSignOut()}>
+            Sign out
+          </NavLink>
+        </li>
+      );
+    } else {
+      <>
+        <li className="text-black/60 ml-10 text-sm">edgardotecno@gmail.com</li>
+        <li>
+          <NavLink
+            to="/my-orders"
+            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}>
+            My Orders
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/my-account"
+            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}>
+            My Account
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/sign-in"
+            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}
+            onClick={() => handleSignOut()}>
+            Sign In
+          </NavLink>
+        </li>
+      </>;
+    }
   };
 
   return (
@@ -101,30 +148,7 @@ const NavBar = () => {
             Women's Clothing
           </NavLink>
         </li>
-        <li className="text-black/60 ml-10 text-sm">edgardotecno@gmail.com</li>
-        <li>
-          <NavLink
-            to="/my-orders"
-            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}>
-            My Orders
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/my-account"
-            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}>
-            My Account
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/sign-in"
-            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}
-            onClick={() => handleSignOut()}>
-            Sign In
-          </NavLink>
-        </li>
-
+        {renderView()}
         <li className="flex items-center">
           <ShoppingBagIcon className="h-6 w-6 text-black" />
           <div>{cartProducts.length}</div>
