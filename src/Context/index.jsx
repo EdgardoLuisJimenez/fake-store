@@ -2,7 +2,34 @@ import { createContext, useEffect, useState } from "react";
 
 const ShoppingCartContext = createContext();
 
+const initialLocalStorage = () => {
+  const accountInLocalStorage = localStorage.getItem("account");
+  const signOutInLocalStorage = localStorage.getItem("sign-out");
+  let parseAccount;
+  let parsedSignOut;
+
+  if (!accountInLocalStorage) {
+    localStorage.setItem("account", JSON.stringify({}));
+    parseAccount = {};
+  } else {
+    parseAccount = JSON.parse(accountInLocalStorage);
+  }
+
+  if (!signOutInLocalStorage) {
+    localStorage.setItem("sign-out", JSON.stringify(false));
+    parsedSignOut = false;
+  } else {
+    parsedSignOut = JSON.parse(signOutInLocalStorage);
+  }
+};
+
 const ShoppingCartProvider = ({ children }) => {
+  // My account
+  const [account, setAccount] = useState({});
+
+  // Sign out
+  const [signOut, setSignOut] = useState(false);
+
   // Shopping Cart - Increment quantity
   const [count, setCount] = useState(0);
 
@@ -155,10 +182,14 @@ const ShoppingCartProvider = ({ children }) => {
         isClickable,
         showCategories,
         setShowCategories,
+        account,
+        setAccount,
+        signOut,
+        setSignOut,
       }}>
       {children}
     </ShoppingCartContext.Provider>
   );
 };
 
-export { ShoppingCartProvider, ShoppingCartContext };
+export { ShoppingCartProvider, ShoppingCartContext, initialLocalStorage };

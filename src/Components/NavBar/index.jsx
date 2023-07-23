@@ -11,6 +11,7 @@ const NavBar = () => {
     isClickable,
     showCategories,
     setShowCategories,
+    setSignOut,
   } = useContext(ShoppingCartContext);
 
   const handleClick = () => {
@@ -19,10 +20,18 @@ const NavBar = () => {
     }
   };
 
+  const handleSignOut = () => {
+    const stringifiedSignOut = JSON.stringify(true);
+    localStorage.setItem("sign-out", stringifiedSignOut);
+    setSignOut(true);
+  };
+
   return (
     <nav
       className={`${
-        isClickable ? "relative" : "relative flex items-center w-full gap-8 pt-3 pl-5"
+        isClickable
+          ? "relative"
+          : "relative flex items-center w-full gap-8 pt-3 pl-5"
       }`}>
       <ul
         className={`${
@@ -110,7 +119,8 @@ const NavBar = () => {
         <li>
           <NavLink
             to="/sign-in"
-            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}>
+            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}
+            onClick={() => handleSignOut()}>
             Sign In
           </NavLink>
         </li>
