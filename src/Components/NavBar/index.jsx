@@ -18,7 +18,6 @@ const NavBar = () => {
       setShowCategories((option) => !option);
     }
   };
-  console.log(showCategories);
 
   return (
     <nav

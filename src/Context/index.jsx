@@ -42,13 +42,29 @@ const ShoppingCartProvider = ({ children }) => {
 
   const [showCategories, setShowCategories] = useState(false);
 
+  useEffect(() => {
+    console.log(`Order: ${JSON.stringify(order)}`);
+
+    if (JSON.stringify(order) != "[]") {
+      localStorage.setItem("my-products", JSON.stringify(order));
+    }
+    if (
+      JSON.stringify(order) == "[]" &&
+      localStorage.getItem("my-products") != null
+    ) {
+      setOrder(JSON.parse(localStorage.getItem("my-products")));
+    }
+
+    console.log(`Local Storage: ${localStorage.getItem("my-products")}`);
+  }, [order]);
+
   const handleResize = () => {
     setIsClickable(window.innerWidth <= 576);
   };
 
   useEffect(() => {
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);

@@ -39,7 +39,7 @@ const CheckoutSideMenu = () => {
     <aside
       className={`${
         isCheckSideMenuOpen ? "flex" : "hidden"
-      } checkout-side-menu flex-col fixed right-0 border bg-white border-black rounded-lg w-[360px] h-[calc(100vh-80px)]`}>
+      } checkout-side-menu flex-col fixed right-0 border bg-white border-black rounded-lg w-[360px] h-[calc(100vh-140px)]`}>
       <div className="flex justify-between items-center p-6">
         <h2 className="font-medium text-xl">My Order</h2>
         <div>
