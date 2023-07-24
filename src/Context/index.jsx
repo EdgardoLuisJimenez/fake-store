@@ -70,8 +70,6 @@ const ShoppingCartProvider = ({ children }) => {
   const [showCategories, setShowCategories] = useState(false);
 
   useEffect(() => {
-    console.log(`Order: ${JSON.stringify(order)}`);
-
     if (JSON.stringify(order) != "[]") {
       localStorage.setItem("my-products", JSON.stringify(order));
     }
@@ -82,7 +80,6 @@ const ShoppingCartProvider = ({ children }) => {
       setOrder(JSON.parse(localStorage.getItem("my-products")));
     }
 
-    console.log(`Local Storage: ${localStorage.getItem("my-products")}`);
   }, [order]);
 
   const handleResize = () => {
