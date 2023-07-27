@@ -3,10 +3,11 @@ import { ShoppingCartContext } from "../../Context";
 import { ShoppingBagIcon } from "@heroicons/react/24/solid";
 
 const shoppingCart = () => {
-  const { closeProductDetail, cartProducts } = useContext(ShoppingCartContext);
+  const { openCheckSideMenuOpen, closeProductDetail, cartProducts } =
+    useContext(ShoppingCartContext);
 
   const openCheckoutSideMenu = () => {
-    // openCheckSideMenuOpen()
+    openCheckSideMenuOpen()
     closeProductDetail();
   };
 
