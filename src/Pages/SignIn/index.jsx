@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Layout } from "../../Components/Layout";
 import { useContext, useRef, useState } from "react";
 import { ShoppingCartContext } from "../../Context";
 
 function SignIn() {
-  const { account } = useContext(ShoppingCartContext);
+  const { account, setSignOut, setAccount } = useContext(ShoppingCartContext);
   const [view, setView] = useState("user-info");
   const form = useRef(null);
 
@@ -20,6 +20,14 @@ function SignIn() {
     : true;
   const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState;
 
+  const handleSignIn = () => {
+    const stringifiedSignOut = JSON.stringify(false);
+    localStorage.setItem("sign-out", stringifiedSignOut);
+    setSignOut(false);
+    // Redirect
+    return <Navigate replace to={"/"} />;
+  };
+
   const createAnAccount = () => {
     const formData = new FormData(form.current);
     const data = {
@@ -27,7 +35,12 @@ function SignIn() {
       email: formData.get("email"),
       password: formData.get("password"),
     };
-    console.log(data);
+    // Create account
+    const stringifiedAccount = JSON.stringify(data);
+    localStorage.setItem("account", stringifiedAccount);
+    setAccount(data);
+    // Sign In
+    handleSignIn();
   };
 
   const renderLogIn = () => {
