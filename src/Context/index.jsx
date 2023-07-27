@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 
 const ShoppingCartContext = createContext();
 
-const initialLocalStorage = () => {
+const initializeLocalStorage = () => {
   const accountInLocalStorage = localStorage.getItem("account");
   const signOutInLocalStorage = localStorage.getItem("sign-out");
   let parseAccount;
@@ -79,7 +79,6 @@ const ShoppingCartProvider = ({ children }) => {
     ) {
       setOrder(JSON.parse(localStorage.getItem("my-products")));
     }
-
   }, [order]);
 
   const handleResize = () => {
@@ -189,4 +188,4 @@ const ShoppingCartProvider = ({ children }) => {
   );
 };
 
-export { ShoppingCartProvider, ShoppingCartContext, initialLocalStorage };
+export { ShoppingCartProvider, ShoppingCartContext, initializeLocalStorage };
