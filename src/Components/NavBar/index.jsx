@@ -90,7 +90,7 @@ const NavBar = () => {
       className={`${
         isClickable
           ? "relative"
-          : "relative flex items-center w-full gap-8 pt-3 pl-5"
+          : "relative flex items-center w-full gap-8 pt-3 pl-5 bg-white"
       }`}>
       <ul
         className={`${

@@ -66,7 +66,7 @@ const Card = ({ id, title, price, category, description, image }) => {
         />
         {renderIcon(productData.id)}
       </figure>
-      <p className="flex justify-between">
+      <p className="flex justify-between items-center">
         <span className="text-sm font-light line-clamp-2">{productData.title}</span>
         <span className="text-lg font-medium">${productData.price}</span>
       </p>
