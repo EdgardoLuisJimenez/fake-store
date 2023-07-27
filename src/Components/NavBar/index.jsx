@@ -13,18 +13,24 @@ const NavBar = () => {
     setShowCategories,
     signOut,
     setSignOut,
+    account,
   } = useContext(ShoppingCartContext);
 
   // Sign Out
   const signOutLocalStorage = localStorage.getItem("sign-out");
   const parseSignOut = JSON.parse(signOutLocalStorage);
   const isUserSignOut = signOut || parseSignOut;
-
-  const handleClick = () => {
-    if (isClickable) {
-      setShowCategories((option) => !option);
-    }
-  };
+  // Account
+  const accountLocalStorage = localStorage.getItem("account");
+  const parseAccount = JSON.parse(accountLocalStorage);
+  // Has an account
+  const noAccountInLocalStorage = parseAccount
+    ? Object.keys(parseAccount).length === 0
+    : true;
+  const noAccountInLocalState = account
+    ? Object.keys(account).length === 0
+    : true;
+  const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState;
 
   const handleSignOut = () => {
     const stringifiedSignOut = JSON.stringify(true);
@@ -33,43 +39,49 @@ const NavBar = () => {
   };
 
   const renderView = () => {
-    if (isUserSignOut) {
+    if (hasUserAnAccount && !isUserSignOut) {
+      return (
+        <>
+          <li className="text-black/60">teff@platzi.com</li>
+          <li>
+            <NavLink
+              to="/my-orders"
+              className={({ isActive }) =>
+                isActive ? activeStyle : undefined
+              }>
+              My Orders
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/my-account"
+              className={({ isActive }) =>
+                isActive ? activeStyle : undefined
+              }>
+              My Account
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/sign-in"
+              className={({ isActive }) => (isActive ? activeStyle : undefined)}
+              onClick={() => handleSignOut()}>
+              Sign out
+            </NavLink>
+          </li>
+        </>
+      );
+    } else {
       return (
         <li>
           <NavLink
             to="/sign-in"
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
             onClick={() => handleSignOut()}>
-            Sign out
+            Sign in
           </NavLink>
         </li>
       );
-    } else {
-      <>
-        <li className="text-black/60 ml-10 text-sm">edgardotecno@gmail.com</li>
-        <li>
-          <NavLink
-            to="/my-orders"
-            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}>
-            My Orders
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/my-account"
-            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}>
-            My Account
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/sign-in"
-            className={({ isActive }) => (isActive ? activeStyle : "text-sm")}
-            onClick={() => handleSignOut()}>
-            Sign In
-          </NavLink>
-        </li>
-      </>;
     }
   };
 
@@ -87,9 +99,7 @@ const NavBar = () => {
             : "flex"
         }`}>
         <li className="font-semibold text-3xl">
-          <NavLink to="/" onClick={handleClick}>
-            Shopi
-          </NavLink>
+          <NavLink to={`${isUserSignOut ? "/sign-in" : "/"}`}>Shopi</NavLink>
         </li>
       </ul>
       <ul
