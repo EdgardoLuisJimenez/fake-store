@@ -90,7 +90,7 @@ const NavBar = () => {
       className={`${
         isClickable
           ? "relative"
-          : " flex items-center w-full gap-8 pt-3 pl-5 bg-white z-10 fixed top-0"
+          : " flex  justify-evenly items-center w-full gap-8 pt-3 pl-5 bg-white z-10 fixed top-0"
       }`}>
       <ul
         className={`${
@@ -117,7 +117,7 @@ const NavBar = () => {
           onClick={() => setShowCategories((option) => !option)}>
           <XMarkIcon className="h-full w-full text-black" />
         </li>
-        <li className="">
+        <li>
           <NavLink
             to="/"
             onClick={() => setSearchByCategory()}
@@ -158,6 +158,13 @@ const NavBar = () => {
             Women's Clothing
           </NavLink>
         </li>
+      </ul>
+      <ul
+        className={`${
+          showCategories
+            ? "flex flex-col h-full justify-evenly items-center bg-white gap-y-9 w-full fixed z-10 top-0"
+            : "hidden sm:flex sm:items-center sm:gap-5"
+        }`}>
         {renderView()}
         <li className="flex items-center">
           <ShoppingBagIcon className="h-6 w-6 text-black" />

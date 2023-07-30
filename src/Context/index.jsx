@@ -70,14 +70,14 @@ const ShoppingCartProvider = ({ children }) => {
   const [showCategories, setShowCategories] = useState(false);
 
   useEffect(() => {
-    if (JSON.stringify(order) != "[]") {
+    if (order.length > 0) {
       localStorage.setItem("my-products", JSON.stringify(order));
     }
-    if (
-      JSON.stringify(order) == "[]" &&
-      localStorage.getItem("my-products") != null
-    ) {
-      setOrder(JSON.parse(localStorage.getItem("my-products")));
+    if (JSON.stringify(order) === 0) {
+      if (localStorage.getItem("my-products") != null) {
+        setOrder(JSON.parse(localStorage.getItem("my-products")));
+        console.log("Entro al useEffect");
+      }
     }
   }, [order]);
 
