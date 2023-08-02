@@ -5,12 +5,7 @@ import _ from "lodash";
 
 const OrdersCards = (props) => {
   const { totalPrice, totalProducts, article } = props;
-  const { order, setOrder } = useContext(ShoppingCartContext);
-
-  const handleClick = () => {
-    const result = order.filter((object) => !_.isEqual(object, article));
-    setOrder(result);
-  };
+  const { deleteCards } = useContext(ShoppingCartContext);
 
   return (
     <div className="flex justify-between items-center mb-3 border border-none w-80 p-4 rounded-lg shadow-lg shadow-gray-400">
@@ -24,7 +19,7 @@ const OrdersCards = (props) => {
           <ChevronRightIcon className="h-6 w-6 text-black cursor-pointer" />
         </p>
         <div className="flex h-6 w-6 cursor-pointer">
-          <XMarkIcon onClick={() => handleClick()} />
+          <XMarkIcon onClick={() => deleteCards(article)} />
         </div>
       </div>
     </div>

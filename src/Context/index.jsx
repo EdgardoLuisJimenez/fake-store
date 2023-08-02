@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { createContext, useEffect, useState } from "react";
 
 const ShoppingCartContext = createContext();
@@ -69,17 +70,18 @@ const ShoppingCartProvider = ({ children }) => {
 
   const [showCategories, setShowCategories] = useState(false);
 
+  const deleteCards = (article) => {
+    const result = order.filter((object) => !_.isEqual(object, article));
+    localStorage.setItem("my-products", JSON.stringify(result));
+    setOrder(result);
+  };
+
   useEffect(() => {
-    if (order.length > 0) {
-      localStorage.setItem("my-products", JSON.stringify(order));
+    if (localStorage.getItem("my-products") != null) {
+      setOrder(JSON.parse(localStorage.getItem("my-products")));
     }
-    if (JSON.stringify(order) === 0) {
-      if (localStorage.getItem("my-products") != null) {
-        setOrder(JSON.parse(localStorage.getItem("my-products")));
-        console.log("Entro al useEffect");
-      }
-    }
-  }, [order]);
+    console.log("Entro al useEffect: " + order.length);
+  }, []);
 
   const handleResize = () => {
     setIsClickable(window.innerWidth <= 576);
@@ -182,6 +184,7 @@ const ShoppingCartProvider = ({ children }) => {
         setAccount,
         signOut,
         setSignOut,
+        deleteCards,
       }}>
       {children}
     </ShoppingCartContext.Provider>
