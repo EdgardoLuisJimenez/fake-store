@@ -84,7 +84,7 @@ const ShoppingCartProvider = ({ children }) => {
   }, []);
 
   const handleResize = () => {
-    setIsClickable(window.innerWidth <= 576);
+    setIsClickable(window.innerWidth <= 913);
   };
 
   useEffect(() => {
